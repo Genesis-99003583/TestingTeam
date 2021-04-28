@@ -10,9 +10,6 @@ class StudentData:
 	# ---------------------------------------GET Operations(Start)---------------------------------------
 
 	def allStudents(self):
-		# self.get_req = requests.get(f"{self.domain}/{self.path}")
-
-		# try_except(self.get_req)
 
 		try:
 			self.get_req = requests.get(f"{self.domain}/{self.path}")
@@ -38,10 +35,6 @@ class StudentData:
 
 	def particularStudent(self):
 		self.id = getID()
-		print("\n\n----------------Particular Student----------------")
-		# self.get_req = requests.get(f"{self.domain}/{self.path}/{self.id}")
-
-		# try_except(self.get_req)
 
 		try:
 			self.get_req = requests.get(f"{self.domain}/{self.path}/{self.id}")
@@ -90,9 +83,6 @@ class StudentData:
 
 	def postStudent(self):
 		self.data = getData()
-		# self.post_req = requests.post(f"{self.domain}/{self.path}", json=self.data)
-
-		# try_except(self.post_req)
 
 		try:
 			self.post_req = requests.post(f"{self.domain}/{self.path}", json=self.data)
@@ -140,9 +130,6 @@ class StudentData:
 	def putStudent(self):
 		self.data = getData()
 		self.id = self.data['id']
-		# self.put_req = requests.put(f"{self.domain}/{self.path}/{self.id}", json=self.data)
-
-		# try_except(self.put_req)
 
 		try:
 			self.put_req = requests.put(f"{self.domain}/{self.path}/{self.id}", json=self.data)
@@ -193,9 +180,6 @@ class StudentData:
 
 	def deleteStudent(self):
 		self.id = getID()
-		# self.del_req = requests.delete(f"{self.domain}/{self.path}/{self.id}")
-
-		# try_except(self.del_req)
 
 		try:
 			self.del_req = requests.delete(f"{self.domain}/{self.path}/{self.id}")
@@ -262,9 +246,6 @@ class StudentData:
 
 	def downloadImage(self):
 		self.type = self.getType()
-		# self.img_req = requests.get(f"{self.imgDomain}/{self.imgPath}/{self.type}")
-
-		# try_except(self.img_req)
 
 		try:
 			self.img_req = requests.get(f"{self.imgDomain}/{self.imgPath}/{self.type}")
