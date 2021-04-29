@@ -1,16 +1,13 @@
 import sys
 sys.path.append("../lib")
-
-# from getRequest import GetStudentData
-# from putRequest import PutStudentData
-# from postRequest import PostStudentData
-# from deleteRequest import DeleteStudentData
-# from image import Image
+import yaml
 
 from exec import StudentData
 
-domain = "http://thetestingworldapi.com"
-path = "api/studentsDetails"
+with open(r'config.yaml') as configFile:
+	data = yaml.load(configFile, Loader = yaml.FullLoader)
+	domain = data['domain']
+	path = data['path']
 
 
 if __name__ == '__main__':

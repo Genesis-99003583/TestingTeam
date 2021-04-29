@@ -1,4 +1,3 @@
-import requests
 import json
 from common import *
 
@@ -9,22 +8,9 @@ class StudentData:
 
 	# ---------------------------------------GET Operations(Start)---------------------------------------
 
+	@try_except
 	def allStudents(self):
-
-		try:
-			self.get_req = requests.get(f"{self.domain}/{self.path}")
-		except requests.exceptions.ConnectionError as e:
-			print(f"Connection Error. Make sure you are connected to Internet.\n{str(e)}")
-		except requests.exceptions.Timeout as e:
-			print(f"Request Timeout\n{str(e)}")
-		except requests.exceptions.ReadTimeout as e:
-			print(f"The server did not send any data in the allotted amount of time.\n{str(e)}")
-		except requests.exceptions.URLRequired as e:
-			print(f"A valid URL is required to make a request.\n{str(e)}")
-		except requests.exceptions.HTTPError as e:
-			print(f"Error 404: Page not found, check the link & try again\n{str(e)}")
-		except Exception as e:
-			print(str(e))
+		self.get_req = requests.get(f"{self.domain}/{self.path}")
 
 		self.get_req = json.loads(self.get_req.text)
 
@@ -33,23 +19,12 @@ class StudentData:
 			print(i)
 		print("------------------------------------------------------------------------")
 
+	@try_except
 	def particularStudent(self):
 		self.id = getID()
 
-		try:
-			self.get_req = requests.get(f"{self.domain}/{self.path}/{self.id}")
-		except requests.exceptions.ConnectionError as e:
-			print(f"Connection Error. Make sure you are connected to Internet.\n{str(e)}")
-		except requests.exceptions.Timeout as e:
-			print(f"Request Timeout\n{str(e)}")
-		except requests.exceptions.ReadTimeout as e:
-			print(f"The server did not send any data in the allotted amount of time.\n{str(e)}")
-		except requests.exceptions.URLRequired as e:
-			print(f"A valid URL is required to make a request.\n{str(e)}")
-		except requests.exceptions.HTTPError as e:
-			print(f"Error 404: Page not found, check the link & try again\n{str(e)}")
-		except Exception as e:
-			print(str(e))
+		self.get_req = requests.get(f"{self.domain}/{self.path}/{self.id}")
+
 
 		print("\n\n----------------Particular Student----------------")
 		if(self.get_req.status_code == 200):
@@ -81,23 +56,12 @@ class StudentData:
 
 	# ---------------------------------------POST Operations(Start)---------------------------------------
 
+	@try_except
 	def postStudent(self):
 		self.data = getData()
 
-		try:
-			self.post_req = requests.post(f"{self.domain}/{self.path}", json=self.data)
-		except requests.exceptions.ConnectionError as e:
-			print(f"Connection Error. Make sure you are connected to Internet.\n{str(e)}")
-		except requests.exceptions.Timeout as e:
-			print(f"Request Timeout\n{str(e)}")
-		except requests.exceptions.ReadTimeout as e:
-			print(f"The server did not send any data in the allotted amount of time.\n{str(e)}")
-		except requests.exceptions.URLRequired as e:
-			print(f"A valid URL is required to make a request.\n{str(e)}")
-		except requests.exceptions.HTTPError as e:
-			print(f"Error 404: Page not found, check the link & try again\n{str(e)}")
-		except Exception as e:
-			print(str(e))
+		self.post_req = requests.post(f"{self.domain}/{self.path}", json=self.data)
+
 
 		if(self.post_req.status_code == 201):
 			print("------------------------------------------------------------------------")
@@ -127,24 +91,12 @@ class StudentData:
 
 	# ---------------------------------------PUT Operations(Start)---------------------------------------
 
+	@try_except
 	def putStudent(self):
 		self.data = getData()
 		self.id = self.data['id']
 
-		try:
-			self.put_req = requests.put(f"{self.domain}/{self.path}/{self.id}", json=self.data)
-		except requests.exceptions.ConnectionError as e:
-			print(f"Connection Error. Make sure you are connected to Internet.\n{str(e)}")
-		except requests.exceptions.Timeout as e:
-			print(f"Request Timeout\n{str(e)}")
-		except requests.exceptions.ReadTimeout as e:
-			print(f"The server did not send any data in the allotted amount of time.\n{str(e)}")
-		except requests.exceptions.URLRequired as e:
-			print(f"A valid URL is required to make a request.\n{str(e)}")
-		except requests.exceptions.HTTPError as e:
-			print(f"Error 404: Page not found, check the link & try again\n{str(e)}")
-		except Exception as e:
-			print(str(e))
+		self.put_req = requests.put(f"{self.domain}/{self.path}/{self.id}", json=self.data)
 
 		if(self.put_req.status_code == 200):
 			print("------------------------------------------------------------------------")
@@ -178,23 +130,11 @@ class StudentData:
 
 	# ---------------------------------------DELETE Operations(Start)---------------------------------------
 
+	@try_except
 	def deleteStudent(self):
 		self.id = getID()
 
-		try:
-			self.del_req = requests.delete(f"{self.domain}/{self.path}/{self.id}")
-		except requests.exceptions.ConnectionError as e:
-			print(f"Connection Error. Make sure you are connected to Internet.\n{str(e)}")
-		except requests.exceptions.Timeout as e:
-			print(f"Request Timeout\n{str(e)}")
-		except requests.exceptions.ReadTimeout as e:
-			print(f"The server did not send any data in the allotted amount of time.\n{str(e)}")
-		except requests.exceptions.URLRequired as e:
-			print(f"A valid URL is required to make a request.\n{str(e)}")
-		except requests.exceptions.HTTPError as e:
-			print(f"Error 404: Page not found, check the link & try again\n{str(e)}")
-		except Exception as e:
-			print(str(e))
+		self.del_req = requests.delete(f"{self.domain}/{self.path}/{self.id}")
 
 		if(self.del_req.status_code == 200):
 			self.del_req = json.loads(self.del_req.text)
@@ -244,28 +184,16 @@ class StudentData:
 			print("Invalid option(Select only from 1 to 4)")
 			self.getType()
 
+	@try_except
 	def downloadImage(self):
 		self.type = self.getType()
 
-		try:
-			self.img_req = requests.get(f"{self.imgDomain}/{self.imgPath}/{self.type}")
-		except requests.exceptions.ConnectionError as e:
-			print(f"Connection Error. Make sure you are connected to Internet.\n{str(e)}")
-		except requests.exceptions.Timeout as e:
-			print(f"Request Timeout\n{str(e)}")
-		except requests.exceptions.ReadTimeout as e:
-			print(f"The server did not send any data in the allotted amount of time.\n{str(e)}")
-		except requests.exceptions.URLRequired as e:
-			print(f"A valid URL is required to make a request.\n{str(e)}")
-		except requests.exceptions.HTTPError as e:
-			print(f"Error 404: Page not found, check the link & try again\n{str(e)}")
-		except Exception as e:
-			print(str(e))
+		self.img_req = requests.get(f"{self.imgDomain}/{self.imgPath}/{self.type}")
 
 		with open(f"../logs/{self.type}_image.{self.type}", "wb") as image:
 			image.write(self.img_req.content)
 			print("------------------------------------------------------------------------")
-			print("Downloaded the image")
+			print(f"Downloaded the image into \"logs\" folder as \"{self.type}_image.{self.type}\"")
 			print("------------------------------------------------------------------------")
 
 	def imageMain(self):
